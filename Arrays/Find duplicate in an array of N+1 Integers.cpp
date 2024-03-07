@@ -58,7 +58,10 @@ class Solution{
         if ((arr[i] / n) >= 2)
            ans.push_back(i);
     }
-    return ans;
+    if(ans.empty())
+        return {-1};
+    else
+        return ans;
     }
 };
 
