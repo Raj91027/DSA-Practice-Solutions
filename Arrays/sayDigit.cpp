@@ -18,11 +18,12 @@ int main()
 {
     string arr[10]={"zero","one","two","three","four","five","six","seven","eight","nine"};
     int n;
-    cin>>n;
+    cout << "Enter" << endl;
+    cin >> n;
     
-    cout<<endl<<endl;
+    cout << endl << endl;
     sayDigit(n,arr);
-    cout<<endl<<endl;
+    
 
     return 0;
 }
