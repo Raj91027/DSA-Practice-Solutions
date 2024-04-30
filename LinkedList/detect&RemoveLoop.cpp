@@ -168,6 +168,10 @@ Node* getStartingNode(Node* head){
 
     Node* intersection = floydDetectLoop(head);
 
+    if(intersection==NULL){
+            return NULL;
+    }
+
     Node* slow = head;
     while(slow != intersection){
         intersection = intersection->next;
@@ -185,6 +189,10 @@ void removeLoop(Node* head){
 
     Node* startOfLoop = getStartingNode(head);
 
+    if(startOfLoop==NULL){
+            return;
+    }
+    
     Node* temp = startOfLoop;
 
     while(temp -> next != startOfLoop){

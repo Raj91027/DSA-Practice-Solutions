@@ -174,7 +174,7 @@ void findMiddleOfLL(Node* &head){
     Node* slow = head;
     Node* fast = head;
     cout << slow->data << endl;
-    while(fast!=nullptr || fast->next!=nullptr){
+    while(fast!=nullptr && fast->next!=nullptr){
         slow = slow -> next;
         fast = fast -> next;
         fast = fast -> next;
