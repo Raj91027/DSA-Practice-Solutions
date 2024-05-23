@@ -1,13 +1,10 @@
 /*
-Link: https://www.geeksforgeeks.org/problems/height-of-binary-tree/1
+Link:   https://www.geeksforgeeks.org/problems/sum-tree/1
 */
 
 
 
-
 //{ Driver Code Starts
-//Initial template for C++
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -16,13 +13,17 @@ struct Node
     int data;
     struct Node *left;
     struct Node *right;
-
-    Node(int val) {
-        data = val;
-        left = right = NULL;
-    }
-}; 
-
+};
+// Utility function to create a new Tree Node
+Node* newNode(int val)
+{
+    Node* temp = new Node;
+    temp->data = val;
+    temp->left = NULL;
+    temp->right = NULL;
+    
+    return temp;
+}
 // Function to Build Tree
 Node* buildTree(string str)
 {   
@@ -32,14 +33,14 @@ Node* buildTree(string str)
     
     // Creating vector of strings from input 
     // string after spliting by space
-    vector<string> ip
+    vector<string> ip;
     
     istringstream iss(str);
     for(string str; iss >> str; )
         ip.push_back(str);
         
     // Create the root of the tree
-    Node *root = new Node(stoi(ip[0]));
+    Node* root = newNode(stoi(ip[0]));
         
     // Push the root to the queue
     queue<Node*> queue;
@@ -58,9 +59,9 @@ Node* buildTree(string str)
             
         // If the left child is not null
         if(currVal != "N") {
-
-            // Create the left child for the current Node
-            currNode->left = new Node(stoi(currVal));
+                
+            // Create the left child for the current node
+            currNode->left = newNode(stoi(currVal));
                 
             // Push it to the queue
             queue.push(currNode->left);
@@ -76,7 +77,7 @@ Node* buildTree(string str)
         if(currVal != "N") {
                 
             // Create the right child for the current node
-            currNode->right = new Node(stoi(currVal));
+            currNode->right = newNode(stoi(currVal));
                 
             // Push it to the queue
             queue.push(currNode->right);
@@ -87,53 +88,77 @@ Node* buildTree(string str)
     return root;
 }
 
-// } Driver Code Ends
-//User function template for C++
 
-/*
+// } Driver Code Ends
+/*  Tree node
 struct Node
 {
     int data;
-    struct Node* left;
-    struct Node* right;
-    
-    Node(int x){
-        data = x;
-        left = right = NULL;
-    }
-};
-*/
-class Solution{
-    public:
-    //Function to find the height of a binary tree.
-    int height(struct Node* node){
+    Node* left, * right;
+}; */
+
+// Should return true if tree is Sum Tree, else false
+class Solution
+{
+    private:
+    pair<bool, int> isSumTreeFast(Node* root){
         //base case
         
-        if(node==NULL){
-            return 0;
+        if(root==NULL){
+            pair<bool, int> p = make_pair(true, 0);
+            return p;
         }
         
-        int left = height(node->left);
-        int right = height(node->right);
+        if(root->left==NULL && root->right==NULL){
+            pair<bool, int> p = make_pair(true, root->data);
+            return p;
+        }
         
-        int ans = max(left, right)+1;
+        pair<bool, int> isLeftSumTree = isSumTreeFast(root->left);
+        pair<bool, int> isRightSumTree = isSumTreeFast(root->right);
+        
+        bool leftAns = isLeftSumTree.first;
+        bool rightAns = isRightSumTree.first;
+
+        int leftSum = sLeftSumTree.second;
+        int rightSum = isRightSumTree.second;
+        
+        bool condn = root -> data == leftSum + rightSum;
+
+        pair<bool, int> ans;
+        if(leftAns && rightAns && condn){
+            ans.first = true;
+            ans.second = root->data + leftSum + rightSum;
+        }
+        else{
+            ans.first = false;
+        }
+        
         return ans;
+    }
+    
+    public:
+    bool isSumTree(Node* root)
+    {
+        return isSumTreeFast(root).first;
     }
 };
 
 //{ Driver Code Starts.
+
 int main()
 {
+
     int t;
 	scanf("%d ",&t);
     while(t--)
     {
-        string treeString;
-		getline(cin,treeString);
-		Node* root = buildTree(treeString);
+        string s;
+		getline(cin,s);
+        Node* root = buildTree(s);
         Solution ob;
-		cout<<ob.height(root)<<endl;
+        cout <<ob.isSumTree(root) << endl;
     }
-    return 0;
+    return 1;
 }
 // } Driver Code Ends
