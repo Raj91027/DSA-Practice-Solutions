@@ -8,7 +8,8 @@ Link: https://www.geeksforgeeks.org/problems/tree-from-postorder-and-inorder/1
 class Solution {
 public:
     Node* buildTreeHelper(int in[], int post[], int inStart, int inEnd, int& postIndex) {
-        if (inStart > inEnd) return NULL;
+        if (inStart > inEnd) 
+            return NULL;
 
         Node* root = new Node(post[postIndex--]); 
 
