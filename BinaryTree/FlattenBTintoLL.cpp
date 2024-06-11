@@ -16,12 +16,12 @@ class Solution
         Node* curr = root;
         while(curr!=NULL){
             if(curr->left){
-                Node* prev = curr -> left;
+                Node* pred = curr -> left;
                 while(prev -> right){
-                    prev = prev->right;
+                    pred = prev->right;
                 }
                 
-                prev ->right = curr -> right;
+                pred ->right = curr -> right;
                 curr -> right = curr -> left;
                 curr -> left = NULL;
             }
