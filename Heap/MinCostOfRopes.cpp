@@ -23,5 +23,4 @@ class Solution
         }
         return maxSum;
     }
-    
 };
