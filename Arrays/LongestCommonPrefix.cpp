@@ -13,7 +13,7 @@ string longestCommonPrefix(vector<string> &arr, int n)
             }
         }
         if(match == false){
-        break;
+            break;
         }
         else{
             ans.push_back(ch);
