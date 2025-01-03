@@ -21,4 +21,6 @@ int main(){
     }
     if(flag==0)
         cout<<"it is a prime number"<<endl;
+
+    return 0;
 }

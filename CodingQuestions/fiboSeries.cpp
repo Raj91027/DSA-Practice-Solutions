@@ -20,4 +20,6 @@ int main(){
         f1 = f2;
         f2= f_next;
     }
+
+    return 0;
 }
